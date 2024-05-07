@@ -1,3 +1,5 @@
+var CONFIG = require("./config.json")
+
 (function () {
     var client = window.ZAFClient.init();
     client.invoke('resize', { width: '100%', height: '200px' });
@@ -23,9 +25,9 @@
         }
     );
 
-    client.get('ticket.customField:custom_field_18839806827540').then(
+    client.get('ticket.customField:custom_field_' + CONFIG.customField_Id_1).then(
         function(data){
-            console.log("HOLA, ESTE ES EL OUTPUT ", data['ticket.customField:custom_field_18839806827540'])
+            console.log("HOLA, ESTE ES EL OUTPUT ", data['ticket.customField:custom_field_' + CONFIG.customField_Id_1])
         }
     );
     
