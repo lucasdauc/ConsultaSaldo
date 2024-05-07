@@ -1,4 +1,4 @@
-var CONFIG = require("./config.json")
+import CONFIG from "./config.js"
 
 (function () {
     var client = window.ZAFClient.init();
@@ -25,9 +25,9 @@ var CONFIG = require("./config.json")
         }
     );
 
-    client.get('ticket.customField:custom_field_' + CONFIG.customField_Id_1).then(
+    client.get('ticket.customField:custom_field_' + CONFIG.CUSTOM_FIELD_ID_1).then(
         function(data){
-            console.log("HOLA, ESTE ES EL OUTPUT ", data['ticket.customField:custom_field_' + CONFIG.customField_Id_1])
+            console.log("HOLA, ESTE ES EL OUTPUT ", data['ticket.customField:custom_field_' + CONFIG.CUSTOM_FIELD_ID_1])
         }
     );
     
