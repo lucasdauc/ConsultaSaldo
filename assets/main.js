@@ -1,6 +1,9 @@
 import CONFIG from "./config.js"
 
 (function () {
+    var numDoc;
+    var numBill;
+
     var client = window.ZAFClient.init();
     client.invoke('resize', { width: '100%', height: '200px' });
 
@@ -25,21 +28,28 @@ import CONFIG from "./config.js"
         }
     );
 
-    client.get('ticket.customField:custom_field_' + CONFIG.CUSTOM_FIELD_ID_1).then(
+    p1 = client.get('ticket.customField:custom_field_' + CONFIG.CUSTOM_FIELD_ID_1).then(
         function(data){
-            var numDoc;
             numDoc = data['ticket.customField:custom_field_' + CONFIG.CUSTOM_FIELD_ID_1];
-            //console.log("function-> get customfield -> numDoc: ", numDoc);
+            console.log("function-> get customfield -> numDoc: ", numDoc);
+            return numDoc;
+        }
+    );
 
-            client.get('ticket.customField:custom_field_' + CONFIG.CUSTOM_FIELD_ID_2).then(
-                function(data){
-                    var numBill;
-                    numBill = data['ticket.customField:custom_field_' + CONFIG.CUSTOM_FIELD_ID_2];
-                    //console.log("function-> get customfield -> numBill: ", numBill);
+    console.log("hola pasamos a numBill");
+    p2 = client.get('ticket.customField:custom_field_' + CONFIG.CUSTOM_FIELD_ID_2).then(
+        function(data){
+            numBill = data['ticket.customField:custom_field_' + CONFIG.CUSTOM_FIELD_ID_2];
+            console.log("function-> get customfield -> numBill: ", numBill);
+            return numBill;
+        }
+    );
 
-                    requestUserInfo(client, numDoc, numBill);
-                }
-            );
+
+    Promise.all([p1, p2]).then(
+        function(values){
+            console.log(values);
+            //requestUserInfo(client, numDoc, numBill);
         }
     );
 
