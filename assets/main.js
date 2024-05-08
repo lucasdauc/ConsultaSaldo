@@ -45,9 +45,6 @@ import CONFIG from "./config.js"
 
 })();
 
-//comentario de la rama app usando promise.all
-//holahola
-
 //obtener token para acceder a la API de TigoMoney
 function getToken(client) {
     var auth = {
