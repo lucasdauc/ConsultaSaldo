@@ -61,8 +61,7 @@ function getToken(client) {
             token = data.access_token
             console.log(token)
         }
-    )
-    
+    ) 
 }
 
 //solicitar información a la API de TigoMoney
